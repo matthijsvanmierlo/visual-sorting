@@ -12,6 +12,6 @@ This is an application to visualize various sorting algorithms in the web browse
 
 - Quick Sort (Coming soon...)
 
-!["Sorted Array"](sorting-1.png)
+!["Sorted Array"](sorting-1-new.png)
 
-!["Unsorted Array"](sorting-2.png)
+!["Unsorted Array"](sorting-2-new.png)

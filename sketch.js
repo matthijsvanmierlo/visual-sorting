@@ -4,6 +4,7 @@ let insertion_button;
 let start_button;
 let pause_button;
 let shuffle_button;
+let selection_button;
 let next_button;
 let bottom_section_y = -1;
 let bottom_section_x = -1;
@@ -24,8 +25,9 @@ function setup(){
     bottom_section_x = 0;
     bottom_section_y = height - height / 5;
     slider = createSlider(10, 50, 20, 5);
-    bubble_button = createButton("Bubble Sort");
-    insertion_button = createButton("Insertion Sort");
+    bubble_button = createButton("Bubble");
+    insertion_button = createButton("Insertion");
+    selection_button = createButton("Selection");
     start_button = createButton("Start");
     pause_button = createButton("Pause");
     next_button = createButton("Next Iteration");
@@ -33,6 +35,7 @@ function setup(){
     shuffle_button.position(350, height - height / 6 + 100);
     bubble_button.position(350, height - height / 6 + 60);
     insertion_button.position(450, height - height / 6 + 60);
+    selection_button.position(550, height - height / 6 + 60);
     slider.position(100, height - height / 6);
     start_button.position(100, height - height / 6 + 60);
     pause_button.position(200, height - height / 6 + 60);
@@ -43,6 +46,7 @@ function setup(){
     pause_button.mousePressed(pauseButton);
     shuffle_button.mousePressed(shuffleButton);
     next_button.mousePressed(nextButton);
+    selection_button.mousePressed(startSelection);
     // VARIABLE COMPONENT ------------------------------------
     randomValues = [];
     numValues = slider.value();
@@ -79,6 +83,13 @@ function startBubble(){
 function startInsertion(){
     console.log("-START INSERTION");
     generator = insertion_sort_algo();
+    selectObj = generator.next().value;
+    paused = false;
+}
+
+function startSelection(){
+    console.log("-START SELECTION");
+    generator = selection_sort_algo();
     selectObj = generator.next().value;
     paused = false;
 }
@@ -130,6 +141,22 @@ function* insertion_sort_algo(){
             randomValues[loc - 1] = temp;
             loc = loc - 1;
         }
+    }
+    yield {finished : true, idx1 : -1, idx2 : -1};
+}
+
+function* selection_sort_algo(){
+    for(let i = 0; i < randomValues.length - 1; i++){
+        let smallest = i;
+        for(let j = i + 1; j < randomValues.length; j++){
+            yield {finished : false, idx1 : smallest, idx2 : j};
+            if(randomValues[smallest] > randomValues[j]){
+                smallest = j;
+            }
+        }
+        let temp = randomValues[i];
+        randomValues[i] = randomValues[smallest];
+        randomValues[smallest] = temp;
     }
     yield {finished : true, idx1 : -1, idx2 : -1};
 }
