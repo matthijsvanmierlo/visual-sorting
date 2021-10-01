@@ -120,6 +120,7 @@ function* bubble_sort_algo(){
 function* insertion_sort_algo(){
     for(let i = 1; i < randomValues.length; i++){
         let loc = i;
+        yield {finished : false, idx1 : loc, idx2 : loc - 1};
         while(loc > 0 && randomValues[loc] < randomValues[loc - 1]){
             // Swap loc and loc -1
             // Set loc to loc - 1
