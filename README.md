@@ -6,7 +6,7 @@ This is an application to visualize various sorting algorithms in the web browse
 
 - Insertion Sort
 
-- Selection Sort (Coming soon...)
+- Selection Sort
 
 - Merge Sort (Coming soon...)
 
