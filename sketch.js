@@ -18,28 +18,28 @@ let generator = null;
 let paused = true;
 
 function setup(){
-    createCanvas(windowWidth - 20, windowHeight - 20);
+    createCanvas(window.innerWidth - 20, window.innerHeight - 20);
     r = g = b = 150;
     background(r, g, b);
     // GUI COMPONENT ----------------------------------------
     bottom_section_x = 0;
-    bottom_section_y = height - height / 5;
+    bottom_section_y = height - height / 12;
     slider = createSlider(10, 50, 20, 5);
     bubble_button = createButton("Bubble");
     insertion_button = createButton("Insertion");
     selection_button = createButton("Selection");
     start_button = createButton("Start");
     pause_button = createButton("Pause");
-    next_button = createButton("Next Iteration");
+    next_button = createButton("Step");
     shuffle_button = createButton("Shuffle");
-    shuffle_button.position(350, height - height / 6 + 100);
-    bubble_button.position(350, height - height / 6 + 60);
-    insertion_button.position(450, height - height / 6 + 60);
-    selection_button.position(550, height - height / 6 + 60);
-    slider.position(100, height - height / 6);
-    start_button.position(100, height - height / 6 + 60);
-    pause_button.position(200, height - height / 6 + 60);
-    next_button.position(100, height - height / 6 + 100);
+    shuffle_button.position(250, 27);
+    bubble_button.position(250, 77);
+    insertion_button.position(375, 77);
+    selection_button.position(500, 77);
+    slider.position(100, 35);
+    start_button.position(375, 27);
+    pause_button.position(500, 27);
+    next_button.position(625, 27);
     bubble_button.mousePressed(startBubble);
     insertion_button.mousePressed(startInsertion);
     start_button.mousePressed(startButton);
@@ -68,7 +68,7 @@ function showBars(selectObj){
         }
         let x = map(i, 0, randomValues.length, 50, width - 50);
         let y = bottom_section_y - 100;
-        let rect_height = map(randomValues[i], 0, randomValues.length, 10, bottom_section_y - 150);
+        let rect_height = map(randomValues[i], 0, randomValues.length, 10, bottom_section_y - 250);
         rect(x + 25, y - rect_height, (width - 50 - 50) / randomValues.length - 5, rect_height);
     }
 }
@@ -184,7 +184,7 @@ function createMenu(){
     strokeWeight(0);
     stroke(255);
     fill(255);
-    text(`Elements: ${slider.value()}`, 100, height - height / 6 + 25);
+    text(`Elements: ${slider.value()}`, 100, 65);
 }
 
 function draw(){
